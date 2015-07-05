@@ -1,11 +1,15 @@
 var express = require('express');
+var bodyParser = require("body-parser");
 var app = express();
+
 var compression = require('compression');
 var randomstring = require("randomstring");
-var oneDay = 86400000;
 
 app.use(compression());
 app.use(express.static(__dirname + '/static'));
+
+app.use(bodyParser.json());
+
 
 app.set('port', process.env.PORT || 3000);  
 var server = app.listen(app.get('port'), function() {  
@@ -35,7 +39,6 @@ wss.on('connection', function(ws) {
 
     // var name = socket_names[id];
     var name = undefined;
-
 
     function handle_text(data) {
         var to = undefined;
@@ -90,7 +93,7 @@ wss.on('connection', function(ws) {
             console.log('%s was badly formatted', message);
             return;
         }
-            
+        
         if(typeof data['text'] === 'string') {
             handle_text(data);
         } else if(data['cookie']) {
@@ -112,11 +115,30 @@ wss.on('connection', function(ws) {
 });
 
 
-// var io = require('socket.io')(server);
+var fs = require('fs');
 
-// io.on('connection', function (socket) {
-//     socket.emit('news', { hello: 'world' });
-//     socket.on('my other event', function (data) {
-//         console.log(data);
-//     });
-// });
+// POST /api/auth 
+app.post('/api/auth', function(req, res) {
+    var password = req.body.password;
+    console.log(password);
+    fs.readFile('credentials', 'utf8', function (err,data) {
+        if (err) {
+            return res.status(500).send("Some Err Happened");
+        } 
+        var passwords = data.toString().split('\n');
+        var index = passwords.indexOf(password);
+        if (index > -1) {
+            var cookie = randomstring.generate();
+            if (index === 0) {
+                cookies.jisoo = cookie;
+            } else {
+                cookies.pierre = cookie;
+            }
+            res.send(cookie);
+        } else {
+            res.status(400).send("Password Incorrect");
+        }
+      
+    });
+});
+
