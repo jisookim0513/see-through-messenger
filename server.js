@@ -5,7 +5,7 @@ var compression = require('compression');
 var oneDay = 86400000;
 
 app.use(compression());
-app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
+app.use(express.static(__dirname + '/static', { maxAge: oneDay }));
 
 app.set('port', process.env.PORT || 3000);  
 var server = app.listen(app.get('port'), function() {  
