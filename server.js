@@ -26,7 +26,7 @@ var sockets = {};
 // cookie -> name mapping
 var cookies = {jisoo: "jisoo", pierre: "pierre"};
 // name -> sockets for that person
-var names = {jisoo: new Set(), pierre: new Set()};
+var names = {};
 // socket id -> name
 var socket_names = {1: "jisoo", 2: "pierre"};
 
@@ -80,6 +80,10 @@ wss.on('connection', function(ws) {
         var c = data['cookie'];
         if(cookies[c]) {
             name = cookies[c];
+            if(names[name] == undefined) {
+                names[name] = new Set();
+            }
+            console.log('registered socket %d as %s', id, name);
             names[name].add(id);
         }
     }
