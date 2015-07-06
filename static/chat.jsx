@@ -129,7 +129,7 @@ var MessageForm = React.createClass({
     render: function () {
 	return (
 	    <form className="commentForm" onSubmit={this.handleSubmit}>
-	    <input name="text" ref="text" placeholder="Comment"
+	    <input className="enterMessage" name="text" ref="text" placeholder="&hearts;"
             onChange={this.handleChange}
             required />
 	    </form>

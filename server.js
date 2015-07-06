@@ -136,9 +136,9 @@ app.post('/api/auth', function(req, res) {
         if (index > -1) {
             var cookie = randomstring.generate();
             if (index === 0) {
-                cookies.jisoo = cookie;
+                cookies[cookie] = "jisoo";
             } else {
-                cookies.pierre = cookie;
+                cookies[cookie] = "pierre";
             }
             res.send(cookie);
         } else {

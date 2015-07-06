@@ -14,3 +14,22 @@ body {
 	text-align: center;
 	vertical-align: middle;
 }
+
+.messageList {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: 50px;
+	margin-right: 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.enterMessage {
+	margin-left: 50px;
+	margin-right: 50px;
+	width: 774px;
+}
