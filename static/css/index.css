@@ -15,7 +15,7 @@ body {
 	vertical-align: middle;
 }
 
-.messageList {
+.message-box {
 	margin-top: 50px;
 	margin-bottom: 25px;
 	margin-left: 50px;
@@ -29,9 +29,8 @@ body {
 }
 
 .enterMessage {
-	margin-left: 50px;
-	margin-right: 50px;
-	width: 93%;
+	margin-top: 50px;
+	width: 100%;
 }
 
 .latest {
