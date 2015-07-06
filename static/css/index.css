@@ -17,7 +17,7 @@ body {
 
 .messageList {
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 25px;
 	margin-left: 50px;
 	margin-right: 50px;
 	padding-top: 10px;
@@ -31,7 +31,7 @@ body {
 .enterMessage {
 	margin-left: 50px;
 	margin-right: 50px;
-	width: 774px;
+	width: 93%;
 }
 
 .latest {
