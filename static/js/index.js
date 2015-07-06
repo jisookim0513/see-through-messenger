@@ -18,5 +18,5 @@ function submitPassword(pw) {
 // set cookie and redirect to chat page
 function goToChat(cookie) {
 	docCookies.setItem('cookie', cookie, 60*60*24*30);
-	alert("Go to Chat!");
+	window.location = "/chat.html";
 }
