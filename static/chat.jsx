@@ -34,11 +34,6 @@ var ChatBox = React.createClass({
             }
         }
 
-        //     ('comments', function (comments) {
-	//     that.setState({ comments: comments });
-	// });
-	// this.socket.emit('fetchComments');
-
         $(window).on('beforeunload', function(){
             this.socket.close();
         });
@@ -87,8 +82,12 @@ var MessageList = React.createClass({
 
 var Message = React.createClass({
     render: function() {
+        var classes = "message";
+        if(this.props.latest) {
+            classes += " latest";
+        }
         return (
-            <div className="message">
+            <div className={classes}>
             <span className="author">{this.props.message.from}</span>:&nbsp;
 	    <span className="body">{this.props.message.text}</span>
 	    </div>
@@ -99,7 +98,7 @@ var Message = React.createClass({
 var LatestMessage = React.createClass({
     render: function() {
         if(this.props.message) {
-            return ( <Message message={this.props.message} /> );
+            return ( <Message message={this.props.message} latest={true} /> );
         } else {
             return false;
         }
@@ -131,7 +130,7 @@ var MessageForm = React.createClass({
 	    <form className="commentForm" onSubmit={this.handleSubmit}>
 	    <input name="text" ref="text" placeholder="Comment"
             onChange={this.handleChange}
-            required />
+                      required />
 	    </form>
 	);
     }
