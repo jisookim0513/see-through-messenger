@@ -30,9 +30,12 @@ var cookies = {};
 // name -> sockets for that person
 var names = {};
 // socket id -> name
-var socket_names = {1: "jisoo", 2: "pierre"};
+var socket_names = {};
 
 var global_id = 0;
+
+var usr1_name = 'Jisoo'
+var usr2_name = 'Pierre'
 
 wss.on('connection', function(ws) {
     global_id += 1;
@@ -44,10 +47,10 @@ wss.on('connection', function(ws) {
 
     function handle_text(data) {
         var to = undefined;
-        if(name == 'jisoo') {
-            to = 'pierre';
-        } else if(name == 'pierre') {
-            to = 'jisoo';
+        if(name == usr1_name) {
+            to = usr2_name;
+        } else if(name == usr2_name) {
+            to = usr1_name;
         }
 
         if(!names[to] || names[to].size == 0) {
@@ -137,9 +140,9 @@ app.post('/api/auth', function(req, res) {
         if (index > -1) {
             var cookie = randomstring.generate();
             if (index === 0) {
-                cookies[cookie] = "jisoo";
+                cookies[cookie] = usr1_name;
             } else {
-                cookies[cookie] = "pierre";
+                cookies[cookie] = usr2_name;
             }
             res.send(cookie);
         } else {
