@@ -68,7 +68,7 @@ wss.on('connection', function(ws) {
         }
 
         if(data['message']) {
-            console.log('hello');
+            // console.log('hello');
             for (var tid of names[name]) {
                 if(sockets[tid]) {
                     sockets[tid].send(msg);
@@ -87,6 +87,7 @@ wss.on('connection', function(ws) {
             }
             console.log('registered socket %d as %s', id, name);
             names[name].add(id);
+            ws.send(JSON.stringify({id: id, name: name}));
         }
     }
     
@@ -115,7 +116,7 @@ wss.on('connection', function(ws) {
         console.log('disconnected');
     });
 
-    ws.send(JSON.stringify({id: id, name: name}));
+    ws.send(JSON.stringify({id: id}));
 
     sockets[id] = ws;
 });

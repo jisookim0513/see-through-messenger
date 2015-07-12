@@ -4,7 +4,8 @@ var ChatBox = React.createClass({
     getInitialState: function() {
         return {
             messages: this.props.messages,
-            latest: null
+            latest: null,
+            latestMine: null
         };
     },
     componentDidMount: function() {
@@ -31,6 +32,8 @@ var ChatBox = React.createClass({
             } else if(typeof data['text'] === 'string') {
                 // update latest message
                 that.setState({latest: data});
+            } else if(typeof data['name'] === 'string') {
+                that.name = data['name'];
             }
         }
 
@@ -47,6 +50,7 @@ var ChatBox = React.createClass({
 
     updateMessage: function(text, callback) {
         this.socket.send(JSON.stringify({text: text}));
+        this.setState({latestMine: {from: this.name, text: text}});
         if(callback) {
             callback();
         }
@@ -54,6 +58,7 @@ var ChatBox = React.createClass({
 
     submitMessage: function(text, callback) {
         this.socket.send(JSON.stringify({text: text, message: true}));
+        this.setState({latestMine: null});
         if(callback) {
             callback();
         }
@@ -64,6 +69,7 @@ var ChatBox = React.createClass({
             <div className="chatBox">
             <MessageList messages={this.state.messages}/>
             <LatestMessage message={this.state.latest}/>
+            <LatestMessage message={this.state.latestMine}/>
             <MessageForm submitMessage={this.submitMessage} updateMessage={this.updateMessage}/>
             </div>
         );
@@ -103,7 +109,7 @@ var Message = React.createClass({
 
 var LatestMessage = React.createClass({
     render: function() {
-        if(this.props.message) {
+        if(this.props.message && this.props.message.text != "") {
             return ( <Message message={this.props.message} latest={true} /> );
         } else {
             return false;
