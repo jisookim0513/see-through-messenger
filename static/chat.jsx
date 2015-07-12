@@ -149,9 +149,7 @@ var MessageForm = React.createClass({
     //<button type="submit" ref="submitButton">submit</button>
 
 });
-var messages = [
-    {id: 1, from: "jisoo", text: "hello petroo"},
-    {id: 2, from: "pierre", text: "hello jishoo"}]
+var messages = [];
 
 $(function() {
     React.render(

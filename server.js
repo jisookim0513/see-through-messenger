@@ -34,8 +34,8 @@ var socket_names = {};
 
 var global_id = 0;
 
-var usr1_name = 'Jisoo'
-var usr2_name = 'Pierre'
+var usr1_name = 'Jisoo';
+var usr2_name = 'Pierre';
 
 wss.on('connection', function(ws) {
     global_id += 1;
