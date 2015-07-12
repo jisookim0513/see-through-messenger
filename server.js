@@ -26,7 +26,7 @@ var WebSocketServer = require('ws').Server
 // id -> socket
 var sockets = {};
 // cookie -> name mapping
-var cookies = {jisoo: "jisoo", pierre: "pierre"};
+var cookies = {};
 // name -> sockets for that person
 var names = {};
 // socket id -> name

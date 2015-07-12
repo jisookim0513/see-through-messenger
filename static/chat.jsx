@@ -37,6 +37,12 @@ var ChatBox = React.createClass({
         $(window).on('beforeunload', function(){
             this.socket.close();
         });
+
+        this.socket.onopen = function() {
+            that.socket.send(JSON.stringify({
+                cookie: docCookies.getItem('cookie')
+            }));
+        }
     },
 
     updateMessage: function(text, callback) {
@@ -141,9 +147,10 @@ var messages = [
     {id: 1, from: "jisoo", text: "hello petroo"},
     {id: 2, from: "pierre", text: "hello jishoo"}]
 
-React.render(
-    <ChatBox messages={messages}/>,
-    document.getElementById('content')
-);
-
+$(function() {
+    React.render(
+        <ChatBox messages={messages}/>,
+        document.getElementById('content')
+    );
+});
 
