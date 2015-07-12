@@ -27,7 +27,6 @@ body {
 	background-color: white;
 	border-radius: 5px;
 	word-wrap: break-word;
-	overflow: scroll;
 }
 
 .enterMessage {
@@ -41,4 +40,9 @@ body {
 
 .author {
 	font-weight: bold;
+}
+
+.chatBox {
+	overflow-y: auto;
+	height: 500px;
 }

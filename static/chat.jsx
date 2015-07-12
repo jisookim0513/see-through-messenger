@@ -54,6 +54,7 @@ var ChatBox = React.createClass({
         if(callback) {
             callback();
         }
+        $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
     },
 
     submitMessage: function(text, callback) {
@@ -62,15 +63,20 @@ var ChatBox = React.createClass({
         if(callback) {
             callback();
         }
+        $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
     },
     
     render: function() {
         return (
-            <div className="chatBox">
+            <div className="wrapper">
+            <div className="chatBox" id="chatBox">
             <MessageList messages={this.state.messages}/>
             <LatestMessage message={this.state.latest}/>
             <LatestMessage message={this.state.latestMine}/>
+            </div>
+            <div className="messageInput">
             <MessageForm submitMessage={this.submitMessage} updateMessage={this.updateMessage}/>
+            </div>
             </div>
         );
     }

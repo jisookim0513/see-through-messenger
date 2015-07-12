@@ -20,3 +20,5 @@ function goToChat(cookie) {
 	docCookies.setItem('cookie', cookie, 60*60*24*30);
 	window.location = "/chat.html";
 }
+
+$('div').animate({scrollTop: height});
