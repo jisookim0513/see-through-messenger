@@ -11,7 +11,7 @@ var ChatBox = React.createClass({
     componentDidMount: function() {
 	var that = this;
 
-        this.socket = new WebSocket('ws://localhost:3000');
+        this.socket = new WebSocket('ws://' + window.location.host);
         socket = this.socket;
         
 	this.socket.onmessage = function(event) {
