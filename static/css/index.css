@@ -37,3 +37,7 @@ body {
 .latest {
 	color: #8989A4;
 }
+
+.author {
+	font-weight: bold;
+}
